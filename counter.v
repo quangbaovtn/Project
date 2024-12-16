@@ -6,8 +6,14 @@ module counter(
         input updn,
         input [3:0] pl_data,
         input [3:0] incr,
-        output reg [7:0] cout
+	//input [31:0] table_ [0:255],
+        output reg [7:0] cout,
+	output [31:0] sine_out
 );	
+	
+	reg [31:0] table_ [0:255];
+	`include "table.vh"
+	assign sine_out = table_[cout];
 
 	always @(posedge clk or posedge reset) begin
                 if (reset)
