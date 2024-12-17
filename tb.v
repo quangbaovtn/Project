@@ -5,10 +5,11 @@ module tb (
 	//input reset,
 );
 	reg clk, reset, preload, enable, updn;
-	reg [3:0] pl_data;
+	reg [7:0] pl_data;
 	reg [3:0] incr;
 	wire [7:0] cout;
 	wire clk_delay;
+	reg [31:0] value;
 	/*
 	reg [31:0] table_ [0:255];
 
@@ -20,39 +21,63 @@ module tb (
 	*/
 
 `ifdef USE_RAM
-	//initial
-		//for (integer i=0; i<256; i=i+1)
-			//dut.u_mem.mem[i] = $sin(i*$acos(-1)/128.0) * (2**31-1);
-	reg csb0, web0;
+	reg  csb00;
+	reg  csb10;
+        reg  csb20;
+        reg  csb30;
+        reg  csb40;
+        reg  csb50;
+        reg  csb60;
+        reg  csb70;
+       	reg web0;
 	reg [3:0] wmask0;
 	reg [7:0] addr0;
 	reg [31:0] din0;
 
+	task init_mem();
+		for (reg [8:0] i=0; i<256; i=i+1) begin
+			value = $sin(i*$acos(-1)/128.0) * ((2**31)-1);
+			addr0 = i;
+			web0 = 0;
+			wmask0 = 4'hF;
+			din0 = value;
+			//$display("i: %3d; value: %32h", i, value);
+			case (i[7:5])
+				3'b000: csb00 = 0;
+				3'b001: csb10 = 0;
+				3'b010: csb20 = 0;
+				3'b011: csb30 = 0;
+				3'b100: csb40 = 0;
+				3'b101: csb50 = 0;
+				3'b110: csb60 = 0;
+				default: csb70 = 0;
+			endcase
+			waitforclk(1);
+			csb00 = 4'hf;
+			csb10 = 4'hf;
+			csb20 = 4'hf;
+			csb30 = 4'hf;
+			csb40 = 4'hf;
+			csb50 = 4'hf;
+			csb60 = 4'hf;
+			csb70 = 4'hf;
+		end
+	endtask
+
 	initial begin
-		csb0 = 1'b1;
+		csb00 = 4'hf;
+		csb10 = 4'hf;
+		csb20 = 4'hf;
+		csb30 = 4'hf;
+		csb40 = 4'hf;
+		csb50 = 4'hf;
+		csb60 = 4'hf;
+		csb70 = 4'hf;
 		web0 = 1'b1;
 		wmask0 = 4'h0;
 		addr0 = 0;
 		din0 = 0;
 	end
-
-	task init_mem();
-		begin
-		csb0 = 1'b0;
-		web0 = 1'b0;
-		wmask0 = 4'hF;
-		for (integer i=0; i<256; i=i+1) begin
-			addr0 = i;
-			din0 = $sin(i*$acos(-1)/128.0) * (2**31-1);
-			waitforclk(1);
-		end
-		csb0 = 1'b1;
-		web0 = 1'b1;
-		wmask0 = 4'h0;
-		addr0 = 0;
-		din0 = 0;
-		end
-	endtask
 `endif
 
 	assign #(`CLK_DELAY) clk_delay = clk;
@@ -93,16 +118,23 @@ module tb (
 		.updn(updn),
 		.preload(preload),
 		.pl_data(pl_data),
-		.incr(incr),
+		//.cout(cout)
+		//.table_(table_),
 `ifdef USE_RAM
-		.csb0(csb0),
+		.csb00(csb00),
+		.csb10(csb10),
+		.csb20(csb20),
+		.csb30(csb30),
+		.csb40(csb40),
+		.csb50(csb50),
+		.csb60(csb60),
+		.csb70(csb70),
 		.web0(web0),
 		.wmask0(wmask0),
 		.addr0(addr0),
 		.din0(din0),
 `endif
-		//.table_(table_),
-		.cout(cout)
+		.incr(incr)
 	);
 
 	//initial $display("Hello world\n");
@@ -110,7 +142,6 @@ module tb (
 	initial begin
 		$dumpfile("counter.vcd");
 		$dumpvars();
-		init_mem();
 		incr = 1;
 		preload = 0;
 		pl_data = 0;
@@ -119,6 +150,7 @@ module tb (
 		reset = 1;
 		waitforclk(3);
 		reset = 0;
+		init_mem();
 		waitforclk(26);
 		preload_(5);
 		waitforclk(10);

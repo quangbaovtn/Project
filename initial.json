@@ -2,44 +2,266 @@
 	"DESIGN_NAME": "counter",
 	"VERILOG_FILES": ["dir::sram_null.v", "dir::counter.v"],
 	"CLOCK_PORT": "clk",
-	"CLOCK_PERIOD": 5.0,
+	"CLOCK_PERIOD": 7.2,
 	"FALLBACK_SDC_FILE": "dir::counter.sdc",
 	"FP_SIZING": "absolute",
-	"DIE_AREA": "0 0 631 642",
-	"MAX_FANOUT_CONSTRAINT": 5,
+	"DIE_AREA": "0 0 2525 1075",
+	"MAX_FANOUT_CONSTRAINT": 10,
 	"MAX_TRANSITION_CONSTRAINT": 0.5,
-	"//RUN_POST_GPL_DESIGN_REPAIR": true,
-	"//GRT_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
-	"//RUN_POST_GRT_RESIZER_TIMING": true,
+	"RUN_POST_GPL_DESIGN_REPAIR": true,
+	"//CTS_SINK_CLUSTERING_SIZE": 32,
+	"//RUN_POST_CTS_RESIZER_TIMING": true,
+	"GRT_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
+	"RUN_POST_GRT_RESIZER_TIMING": true,
+	"FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+	"//STA_CORNERS": ["nom_tt_025C_1v80", "min_tt_025C_1v80", "max_tt_025C_1v80",
+	                "nom_ff_n40C_1v95", "min_ff_n40C_1v95", "max_ff_n40C_1v95"],
 	"MACROS": {
-  		"sky130_sram_1kbyte_1rw1r_32x256_8": {
+  		"sky130_sram_32byte_1rw1r_8x32_8": {
       			"instances": {
-          			"u_mem": {
+          			"genblk1[0].genblk1[0].u_mem": {
               				"location": [
                   				75,
-                  				115
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[1].genblk1[0].u_mem": {
+              				"location": [
+                  				375,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[2].genblk1[0].u_mem": {
+              				"location": [
+                  				675,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[3].genblk1[0].u_mem": {
+              				"location": [
+                  				975,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[4].genblk1[0].u_mem": {
+              				"location": [
+                  				1300,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[5].genblk1[0].u_mem": {
+              				"location": [
+                  				1600,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[6].genblk1[0].u_mem": {
+              				"location": [
+                  				1900,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[7].genblk1[0].u_mem": {
+              				"location": [
+                  				2200,
+                  				75
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[0].genblk1[1].u_mem": {
+              				"location": [
+                  				75,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[1].genblk1[1].u_mem": {
+              				"location": [
+                  				375,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[2].genblk1[1].u_mem": {
+              				"location": [
+                  				675,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[3].genblk1[1].u_mem": {
+              				"location": [
+                  				975,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[4].genblk1[1].u_mem": {
+              				"location": [
+                  				1300,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[5].genblk1[1].u_mem": {
+              				"location": [
+                  				1600,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[6].genblk1[1].u_mem": {
+              				"location": [
+                  				1900,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[7].genblk1[1].u_mem": {
+              				"location": [
+                  				2200,
+                  				325
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[0].genblk1[2].u_mem": {
+              				"location": [
+                  				75,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[1].genblk1[2].u_mem": {
+              				"location": [
+                  				375,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[2].genblk1[2].u_mem": {
+              				"location": [
+                  				675,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[3].genblk1[2].u_mem": {
+              				"location": [
+                  				975,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[4].genblk1[2].u_mem": {
+              				"location": [
+                  				1300,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[5].genblk1[2].u_mem": {
+              				"location": [
+                  				1600,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[6].genblk1[2].u_mem": {
+              				"location": [
+                  				1900,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[7].genblk1[2].u_mem": {
+              				"location": [
+                  				2200,
+                  				575
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[0].genblk1[3].u_mem": {
+              				"location": [
+                  				75,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[1].genblk1[3].u_mem": {
+              				"location": [
+                  				375,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[2].genblk1[3].u_mem": {
+              				"location": [
+                  				675,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[3].genblk1[3].u_mem": {
+              				"location": [
+                  				975,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[4].genblk1[3].u_mem": {
+              				"location": [
+                  				1300,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[5].genblk1[3].u_mem": {
+              				"location": [
+                  				1600,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[6].genblk1[3].u_mem": {
+              				"location": [
+                  				1900,
+                  				825
+              				],
+              				"orientation": "N"
+          			},
+          			"genblk1[7].genblk1[3].u_mem": {
+              				"location": [
+                  				2200,
+                  				825
               				],
               				"orientation": "N"
           			}
       			},
+      			"lib": {
+          			"*": ["dir::./RAM32/sky130_sram_32byte_1rw1r_8x32_8_TT_1p8V_25C.lib"]
+			},
       			"gds": [
-          			"dir::./sram_macros/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
+          			"dir::./RAM32/sky130_sram_32byte_1rw1r_8x32_8.gds"
       			],
       			"lef": [
-          			"dir::./sram_macros/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
+          			"dir::./RAM32/sky130_sram_32byte_1rw1r_8x32_8.lef"
       			]
   		}
 	},
-	"//FP_PDN_MACRO_HOOKS": "u_mem vccd1 vssd1 vccd1 vssd1",
-	"//SYNTH_POWER_DEFINE": "USE_POWER_PINS",
-	"//FP_PDN_CHECK_NODES": false,
 	"VDD_NETS": "vccd1",
 	"GND_NETS": "vssd1",
-	"PDN_MACRO_CONNECTIONS": ["u_mem vccd1 vssd1 vccd1 vssd1"],
+	"PDN_MACRO_CONNECTIONS": ["genblk.*\\.u_mem vccd1 vssd1 vccd1 vssd1"],
 	"MAGIC_CAPTURE_ERRORS": false,
 	"RUN_KLAYOUT_DRC": false,
 	"//MAGIC_DRC_USE_GDS": false,
 	"RUN_KLAYOUT_XOR": false,
 	"RUN_MAGIC_DRC": false,
-	"//PL_TARGET_DENSITY_PCT": 50
+	"PL_TARGET_DENSITY_PCT": 50
 }
